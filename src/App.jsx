@@ -1020,10 +1020,10 @@ function ExperienceEntry({ exp, index }: { exp: typeof EXPERIENCE[0]; index: num
       <div
         onClick={() => setOpen(o => !o)}
         style={{
-          background:C.card,
-          border:`1px solid ${open ? `${exp.color}28` : C.border}`,
+          background: open ? C.cardHov : C.card,
+          border:`1px solid ${open ? `${exp.color}45` : "rgba(255,255,255,0.10)"}`,
           borderRadius:14, overflow:"hidden", cursor:"pointer",
-          transition:"border-color .3s",
+          transition:"border-color .3s, background .3s",
         }}
       >
         <div style={{ padding:"18px 20px", display:"flex", alignItems:"center", justifyContent:"space-between" }}>
@@ -1054,7 +1054,7 @@ function ExperienceEntry({ exp, index }: { exp: typeof EXPERIENCE[0]; index: num
             <div style={{ height:1, background:`linear-gradient(90deg,${exp.color}28,transparent)`, marginBottom:14 }} />
             <ul style={{ listStyle:"none", margin:0, padding:0, display:"flex", flexDirection:"column", gap:8, marginBottom:12 }}>
               {exp.bullets.map((b, i) => (
-                <li key={i} style={{ display:"flex", gap:9, fontSize:".82rem", color:C.muted, lineHeight:1.65 }}>
+                <li key={i} style={{ display:"flex", gap:9, fontSize:".82rem", color:C.text, lineHeight:1.65 }}>
                   <span style={{ color:exp.color, flexShrink:0, fontFamily:"'DM Mono',monospace" }}>▸</span>{b}
                 </li>
               ))}
@@ -1244,7 +1244,7 @@ function Footer() {
       display:"flex", alignItems:"center", justifyContent:"space-between", flexWrap:"wrap", gap:8,
     }}>
       <p style={{ fontSize:".62rem", color:C.faint, fontFamily:"'DM Mono',monospace" }}>
-        © 2025 Vinicius Custódio · SWE · C#/.NET · Azure
+        © 2026 Vinicius Custódio · SWE · C#/.NET · Azure
       </p>
       <div style={{ display:"flex", gap:6, alignItems:"center" }}>
         <Dot color={C.emerald} ping />
