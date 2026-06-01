@@ -4,5 +4,10 @@
     "noImplicitAny": false,
     "allowJs": true,
     "skipLibCheck": true
-  }
+  },
+  "exclude": [
+    "postcss.config.js",
+    "tailwind.config.js",
+    "node_modules"
+  ]
 }
