@@ -1,3 +1,5 @@
+import React from "react";
+import type { CSSProperties, RefObject } from "react";
 import {
   useState, useEffect, useRef, useCallback,
   useMemo, memo, createContext, useContext,
@@ -297,8 +299,8 @@ const ParticleCanvas = memo(function ParticleCanvas() {
 });
 
 // ─── HOOKS ────────────────────────────────────────────────────────────────────
-function useInView(threshold = .12) {
-  const ref  = useRef(null);
+function useInView(threshold = .12): [RefObject<HTMLDivElement>, boolean] {
+  const ref = useRef<HTMLDivElement>(null);
   const [v, setV] = useState(false);
   useEffect(() => {
     const o = new IntersectionObserver(([e]) => { if (e.isIntersecting) setV(true); }, { threshold });
@@ -308,7 +310,7 @@ function useInView(threshold = .12) {
   return [ref, v];
 }
 
-function useSpring(delay = 0) {
+function useSpring(delay = 0): [RefObject<HTMLDivElement>, CSSProperties] {
   const [ref, v] = useInView();
   return [ref, {
     opacity:   v ? 1 : 0,
@@ -317,7 +319,7 @@ function useSpring(delay = 0) {
   }];
 }
 
-function useTypewriter(words, speed = 72) {
+function useTypewriter(words: string[], speed = 72) {
   const [disp, setDisp]       = useState("");
   const [wi, setWi]           = useState(0);
   const [ci, setCi]           = useState(0);
@@ -341,12 +343,12 @@ function useTypewriter(words, speed = 72) {
 }
 
 // ─── SMALL ATOMS ─────────────────────────────────────────────────────────────
-function Spring({ children, delay = 0, style: extra = {} }) {
+function Spring({ children, delay = 0, style: extra = {} }: { children: React.ReactNode; delay?: number; style?: CSSProperties }) {
   const [ref, style] = useSpring(delay);
   return <div ref={ref} style={{ ...style, ...extra }}>{children}</div>;
 }
 
-const Tag = memo(function Tag({ children, color = C.cyan }) {
+const Tag = memo(function Tag({ children, color = C.cyan }: { children: React.ReactNode; color?: string }) {
   return (
     <span style={{
       fontFamily:"'DM Mono',monospace", fontSize:".6rem",
@@ -358,7 +360,7 @@ const Tag = memo(function Tag({ children, color = C.cyan }) {
   );
 });
 
-function Dot({ color = C.emerald, ping }) {
+function Dot({ color = C.emerald, ping }: { color?: string; ping?: boolean }) {
   return (
     <span style={{ position:"relative", display:"inline-flex", alignItems:"center", justifyContent:"center", width:10, height:10 }}>
       {ping && <span style={{ position:"absolute", width:10, height:10, borderRadius:"50%", background:color, animation:"ping 2s ease-out infinite", opacity:.4 }} />}
@@ -369,7 +371,10 @@ function Dot({ color = C.emerald, ping }) {
 
 // ─── COMPOUND PROJECT CARD ────────────────────────────────────────────────────
 // ProjectCard.Header
-const PCHeader = memo(function PCHeader({ title, subtitle, color, badge, isPro, proLabel, isLive, link, isActive, onToggle, onDeepDive }) {
+const PCHeader = memo(function PCHeader({ title, subtitle, color, badge, isPro, proLabel, isLive, link, isActive, onToggle, onDeepDive }: {
+  title: string; subtitle: string; color: string; badge?: string; isPro?: boolean; proLabel?: string;
+  isLive?: boolean; link?: string; isActive: boolean; onToggle: () => void; onDeepDive?: (() => void) | null;
+}) {
   return (
     <div style={{ padding:"20px 22px" }}>
       {/* Top row */}
@@ -456,7 +461,7 @@ const PCHeader = memo(function PCHeader({ title, subtitle, color, badge, isPro, 
 });
 
 // ProjectCard.Content
-const PCContent = memo(function PCContent({ children, isActive }) {
+const PCContent = memo(function PCContent({ children, isActive }: { children: React.ReactNode; isActive: boolean }) {
   return (
     <div style={{
       overflow:"hidden",
@@ -477,7 +482,7 @@ const PCContent = memo(function PCContent({ children, isActive }) {
 });
 
 // ProjectCard.TechGrid
-const PCTechGrid = memo(function PCTechGrid({ stacks, color }) {
+const PCTechGrid = memo(function PCTechGrid({ stacks, color }: { stacks: string[]; color: string }) {
   return (
     <div style={{ marginTop:16 }}>
       <div style={{ fontFamily:"'DM Mono',monospace", fontSize:".58rem", color:C.faint, letterSpacing:".1em", textTransform:"uppercase", marginBottom:8 }}>// stack</div>
@@ -489,14 +494,14 @@ const PCTechGrid = memo(function PCTechGrid({ stacks, color }) {
 });
 
 // ProjectCard.Details
-const PCDetails = memo(function PCDetails({ description }) {
+const PCDetails = memo(function PCDetails({ description }: { description: string }) {
   return (
     <p style={{ marginTop:14, fontSize:".83rem", color:C.muted, lineHeight:1.75 }}>{description}</p>
   );
 });
 
 // ProjectCard.Metrics
-const PCMetrics = memo(function PCMetrics({ items, color }) {
+const PCMetrics = memo(function PCMetrics({ items, color }: { items: { v: string; label: string }[]; color: string }) {
   return (
     <div style={{ display:"flex", gap:8, marginTop:16 }}>
       {items.map(m => (
@@ -805,8 +810,8 @@ function Nav() {
               textDecoration:"none", fontFamily:"'DM Mono',monospace",
               transition:"color .2s", borderRadius:8,
             }}
-              onMouseEnter={e => e.target.style.color = C.text}
-              onMouseLeave={e => e.target.style.color = C.muted}
+              onMouseEnter={e => (e.currentTarget as HTMLAnchorElement).style.color = C.text}
+              onMouseLeave={e => (e.currentTarget as HTMLAnchorElement).style.color = C.muted}
             >{l}</a>
           ))}
           <a href={`mailto:${profile.email}`} style={{
@@ -1006,7 +1011,7 @@ function Projects() {
 }
 
 // ─── EXPERIENCE ───────────────────────────────────────────────────────────────
-function ExperienceEntry({ exp, index }) {
+function ExperienceEntry({ exp, index }: { exp: typeof EXPERIENCE[0]; index: number }) {
   const [ref, style] = useSpring(index * .09);
   const [open, setOpen] = useState(index === 0);
 
