@@ -1226,9 +1226,16 @@ function Contact() {
           </div>
 
           <Spring delay={0.28}>
-            <p style={{ marginTop:20, fontSize:".68rem", color:C.faint, fontFamily:"'DM Mono',monospace" }}>
-              📞 {profile.phone} · São Paulo, Brasil
-            </p>
+            <div style={{
+              marginTop:20, display:"inline-flex", alignItems:"center", gap:10,
+              padding:"12px 18px", borderRadius:12,
+              background:"rgba(255,255,255,.03)", border:`1px solid rgba(255,255,255,0.10)`,
+              fontFamily:"'DM Mono',monospace",
+            }}>
+              <span style={{ fontSize:"1rem" }}>📞</span>
+              <span style={{ fontSize:".82rem", color:C.text, fontWeight:600 }}>{profile.phone}</span>
+              <span style={{ fontSize:".72rem", color:C.muted }}>· São Paulo, Brasil</span>
+            </div>
           </Spring>
         </Spring>
       </div>
