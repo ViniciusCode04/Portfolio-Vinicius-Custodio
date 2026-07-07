@@ -38,16 +38,31 @@ const profile = {
 // ─── DATA ─────────────────────────────────────────────────────────────────────
 const EXPERIENCE = [
   {
+    company: "F360",
+    role:    "Engenheiro de Software Júnior",
+    period:  "06/2026 — Presente",
+    badge:   "LIVE",
+    color:   C.cyan,
+    bullets: [
+      "Sistema de gestão financeira completa com +15 mil clientes ativos",
+      "Desenvolvimento de funcionalidades em .NET Core 8, MongoDB, RabbitMQ e Elasticsearch",
+      "Serviços orientados a eventos em arquitetura de microsserviços",
+      "Ambiente de alta criticidade, escala real e comunicação assíncrona",
+    ],
+    tags: [".NET Core 8","MongoDB","RabbitMQ","Elasticsearch","Microsserviços","Event-Driven"],
+  },
+  {
     company: "Recovery — Grupo Itaú",
     role:    "Estagiário em Engenharia de Software",
     period:  "06/2025 — 06/2026",
-    badge:   "LIVE",
-    color:   C.cyan,
+    badge:   "PREV",
+    color:   C.indigo,
     bullets: [
       "Migração de módulos de sistema legado → arquitetura de microsserviços",
       "Pipeline ETL com Azure Data Factory · múltiplas fontes · triggers agendados",
       "Automação de fluxos com Azure Logic Apps · integração com APIs externas",
-      "Microsserviço de base veicular com +1M de registros — queries otimizadas",
+      "Normalização de dados: 99% normalizados e +1M de registros migrados com sucesso",
+      "Sustentação e resolução de incidentes produtivos em ambiente Scrum",
       "CI/CD com Azure DevOps · squad ágil Scrum/Kanban",
     ],
     tags: ["Pipeline ETL","Azure Data Factory","Logic Apps","Microsserviços","SQL Server","C#/.NET","Scrum"],
@@ -80,12 +95,12 @@ const EXPERIENCE = [
 ];
 
 const EDUCATION = [
-  { school:"UNICID",          degree:"Análise e Desenvolvimento de Sistemas", period:"2025–2026", status:"Cursando",  color:C.cyan },
+  { school:"UNICID",          degree:"Análise e Desenvolvimento de Sistemas · 4º Semestre", period:"2025–2026", status:"Cursando",  color:C.cyan },
   { school:"Etec São Mateus", degree:"Técnico em ADS + Ensino Médio",         period:"2022–2024", status:"Concluído", color:C.emerald },
 ];
 
 const SKILLS = [
-  { label:"Backend",      color:C.cyan,    items:["C#/.NET 8","ASP.NET Core","APIs REST","Clean Architecture","RabbitMQ","MongoDB","SQL Server"] },
+  { label:"Backend",      color:C.cyan,    items:["C#/.NET 8","ASP.NET Core","APIs REST","Clean Architecture","RabbitMQ","MongoDB","SQL Server","Elasticsearch"] },
   { label:"Cloud & Azure",color:C.indigo,  items:["Azure Cloud","Azure Data Factory","Logic Apps","App Service","Key Vault","Application Insights"] },
   { label:"Frontend",     color:C.emerald, items:["React","TypeScript","Angular","HTML/CSS","JavaScript"] },
   { label:"DevOps",       color:C.amber,   items:["Docker","Git","Azure DevOps","CI/CD","Scrum","Kanban"] },
@@ -929,9 +944,10 @@ function Hero() {
 
         <Spring delay={0.2}>
           <p style={{ color:C.muted, fontSize:".9rem", lineHeight:1.78, maxWidth:520, marginBottom:34 }}>
-            Engenheiro de software com foco em backend e sistemas escaláveis. Estagiário na{" "}
-            <span style={{ color:C.text, fontWeight:600 }}>Recovery (Grupo Itaú)</span>, atuando em
-            modernização de sistemas legados, microsserviços, pipelines de dados e automações em nuvem.
+            Engenheiro de software com foco em backend e sistemas escaláveis. Atuo na{" "}
+            <span style={{ color:C.text, fontWeight:600 }}>F360</span>, em uma plataforma financeira com
+            +15 mil clientes ativos, usando .NET Core 8, MongoDB, RabbitMQ e Elasticsearch. Antes, na
+            Recovery (Grupo Itaú), trabalhei com modernização de sistemas legados e microsserviços.
           </p>
         </Spring>
 
