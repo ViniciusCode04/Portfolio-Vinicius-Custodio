@@ -39,7 +39,7 @@ const profile = {
 const EXPERIENCE = [
   {
     company: "F360",
-    role:    "Engenheiro de Software Junior",
+    role:    "Engenheiro de Software Júnior",
     period:  "06/2026 — Presente",
     badge:   "LIVE",
     color:   C.cyan,
@@ -95,7 +95,7 @@ const EXPERIENCE = [
 ];
 
 const EDUCATION = [
-  { school:"UNICID",          degree:"Análise e Desenvolvimento de Sistemas · 4º Semestre", period:"2025–2027", status:"Cursando",  color:C.cyan },
+  { school:"UNICID",          degree:"Análise e Desenvolvimento de Sistemas · 4º Semestre", period:"2025–2026", status:"Cursando",  color:C.cyan },
   { school:"Etec São Mateus", degree:"Técnico em ADS + Ensino Médio",         period:"2022–2024", status:"Concluído", color:C.emerald },
 ];
 
